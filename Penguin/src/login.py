@@ -25,7 +25,6 @@ def login():
 
     accountfolder = str(f'./users/{account}/')
     acutalpassword = open (accountfolder + 'user', "r").read()
-    acutalpassword.close()
     if not acutalpassword == password:
         print(f'{prefix} Invalid password for {account}')
         print()

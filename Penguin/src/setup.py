@@ -2,7 +2,7 @@ import os
 
 def setup():
     print()
-    ask = str(input('Create account? (Y/n) '))
+    ask = str(input('Create account? [Y/n] '))
     if ask.upper() == 'Y':
         username = str(input('[setup] Account name: ').lower())
         password = str(input('[setup] Account password: '))

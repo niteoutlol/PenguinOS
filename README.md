@@ -8,3 +8,6 @@
 - root/main.py - The main *bootloader* (just a thing that executes the nessacerry script)
 - root/users/ - The user folder where their folder enviorment is stored
 - root/users/verior/home/ - The user enviorment as mentioned above
+
+# Known bugs
+- You may have to create a folder named 'users' in the ./Penguin/ folder

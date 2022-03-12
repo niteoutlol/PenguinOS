@@ -22,8 +22,10 @@ def handle(raw, dir, account):
     if cmd == 'ls':
         # print(os.listdir(dir))
         files = os.listdir(dir)
+        tosend = str('')
         for i in range(len(files)):
-            print(files[i])
+            tosend += f'{files[i]}  ' # Make folders blue and files gray / RESET_ALL
+        print(tosend)
     elif cmd == 'rmusr' or cmd == 'delusr':
         if argint >= 2:
             if ' ' in args[1] or args[1] == '':

@@ -1,24 +1,26 @@
 import os
-from colorama import Fore
-from colorama import Style
 from getpass import getpass
+from src.utils.coloring import color
 
 from src import shell
-
-prefix = f'{Fore.GREEN}[setup]{Style.RESET_ALL}'
 
 def setup():
     print()
     ask = str(input('Create account? [Y/n] '))
     if ask.upper() == 'Y':
-        username = str(input(f'{prefix} Account name: ').lower())
-        password = str(getpass(f'{prefix} Account password: '))
+        username = str(input(f'{color.FIELD.SETUP} Account name: ').lower())
+        password = str(getpass(f'{color.FIELD.SETUP} Account password: '))
 
         if ' ' in username:
-            print(f'{prefix} Remove spaces from your account name')
-            username = str(input(f'{prefix} Account name: ').lower())
-        
+            print(f'{color.WARNING.SETUP} Remove spaces from your account name')
+            username = str(input(f'{color.FIELD.SETUP} Account name: ').lower())
+
         userfolder = str('./users/' + username + '/')
+        
+        if os.path.exists(userfolder):
+            print(f'{color.WARNING.SETUP} Account already exists')
+            return
+
         if not os.path.exists('./users/'):
             os.mkdir('./users/')
 
@@ -29,10 +31,10 @@ def setup():
             f.write(password)
 
         print()
-        print(f'{prefix} Account created')
+        print(f'{color.FIELD.SETUP} Account created')
         os.mkdir(f'{userfolder}home/')
         shell.shell(username, password)
 
     else:
-        print(f'{prefix} Terminating')
+        print(f'{color.WARNING.SETUP} Terminating')
 

@@ -1,5 +1,6 @@
 import os
 import socket
+import subprocess
 
 from colorama import Fore
 from colorama import Style
@@ -20,6 +21,7 @@ def thereareaccounts():
 def shell(username, password):
     print()
     while thereareaccounts():
+        subprocess.call(['pyclean', './', '-q'])
         raw = str(input(f'{Fore.GREEN}{username}@{hostname}{Style.RESET_ALL}:{Fore.BLUE}~{Style.RESET_ALL}$ '))
         cmdhandler.handle(raw, directory, username)
 

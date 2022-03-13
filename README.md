@@ -10,4 +10,4 @@
 - root/users/verior/home/ - The user enviorment as mentioned above
 
 # Known bugs
-- You may have to create a folder named 'users' in the ./Penguin/ folder
+- You may have to create a folder named 'users' in the ./penguin/ folder

@@ -2,12 +2,9 @@ import os
 import socket
 import subprocess
 
-from colorama import Fore
-from colorama import Style
+from src.utils.coloring import color
 
 from src.utils import cmdhandler
-
-directory = str(os.getcwd())
 
 hostname = str(socket.gethostname())
 
@@ -18,12 +15,23 @@ def thereareaccounts():
     else:
         return False 
 
+directory = os.getcwd()
+visualdirectory = '~'
+
+def setdirectory(dir):
+    directory = dir
+
+def getdirectory(username):
+    dir = directory
+    return dir
+
 def shell(username, password):
     print()
+    directory = str(f'{str(os.getcwd())}/users/{username}/home/')
     while thereareaccounts():
         subprocess.call(['pyclean', './', '-q'])
-        raw = str(input(f'{Fore.GREEN}{username}@{hostname}{Style.RESET_ALL}:{Fore.BLUE}~{Style.RESET_ALL}$ '))
-        cmdhandler.handle(raw, directory, username)
+        raw = str(input(f'{color.GREEN}{username}@{hostname}{color.TEXT}:{color.BLUE}~{color.TEXT}$ '))
+        cmdhandler.handle(raw, directory, username, password)
 
 # Can be used for CONTROL + C keyboard interupts in future programs
 

@@ -45,4 +45,4 @@ def login():
     # Password is correct
     # login to the user
     print(f'{color.FIELD.LOGIN} You are now logged into {account}')
-    shell.shell(account, password)
+    shell.shell.__init__(account, password, True)

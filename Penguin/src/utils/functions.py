@@ -1,7 +1,8 @@
 import os
 import shutil
 import main
-import shell
+import src.shell as shell
+from src.shell import *
 
 from src import setup
 from src import login
@@ -93,13 +94,29 @@ def remove(argint, args, cmd, path):
     except Exception as ex:
         print(ex)
 
-def changedirectory(argint, args, cmd, path):
-    try:
+def changedirectory(argint, args, cmd, path, username, password):
+    # try:
         if argint >= 2:
-            if ' ' in args[1] or args[1] == '':
+            if ' ' in args[1] or args[1] == '' or args[1] == '.' or args[1] == '/':
                 print(f'{cmd}: Argument cannot be empty')
+            if args[1] == '..':
+                pathdic = path.split('/')
+                if not 'home' in pathdic:
+                    print('an error happend cus that not possible')
+                    return
+                else:
+                    #actualpath = actualpath.join(pathdic.pop(len(pathdic) - 1))
+                    actualpath = pathdic.pop(len(pathdic) - 1)
+                    print(pathdic)
+                    print(actualpath)
             else:
-                path += f'/{args[2]}'
-                # change the directory within the shell module.
-    except Exception as ex:
-        print(ex)
+                newpath = path + f'/{args[1]}'
+                if os.path.exists(newpath):
+                    shell.setdirectory(newpath)
+                else:
+                    print(f'{cmd}: There is no folder named that')
+    # except Exception as ex:
+    #     print(ex)
+
+def stop():
+    exit(0)

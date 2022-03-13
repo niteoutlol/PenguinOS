@@ -9,7 +9,7 @@ def handle(raw, dir, account, password):
         cmd = str(raw.split(' ')[0]).lower()
     else:
         cmd = str(raw).lower()
-
+    
     if cmd == 'ls':
         list(dir)
     elif cmd == 'rmusr' or cmd == 'delusr':
@@ -27,5 +27,10 @@ def handle(raw, dir, account, password):
     elif cmd == 'mkdir':
         path = dir
         createdirectory(argint, args, cmd, path)
+    elif cmd == 'cd':
+        path = dir
+        changedirectory(argint, args, cmd, path, account, password)
+    elif cmd == 'stop' or cmd == 'shutdown' or cmd == 'poweroff':
+        stop()
     else:
         print(f'{cmd}: Command not found')

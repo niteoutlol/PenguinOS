@@ -11,6 +11,7 @@ class color:
     YELLOW = f'{Fore.YELLOW}'
     RED = f'{Fore.RED}'
     GREEN = f'{Fore.GREEN}'
+    CYAN = f'{Fore.CYAN}'
     class WARNING:
         LOGIN = f'{Fore.RED}[login]{Style.RESET_ALL}'
         SETUP = f'{Fore.RED}[setup]{Style.RESET_ALL}'

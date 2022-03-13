@@ -33,7 +33,7 @@ def setup():
         print()
         print(f'{color.FIELD.SETUP} Account created')
         os.mkdir(f'{userfolder}home/')
-        shell.shell(username, password)
+        shell.shell(username, password, True)
 
     else:
         print(f'{color.WARNING.SETUP} Terminating')

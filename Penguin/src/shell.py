@@ -15,23 +15,35 @@ def thereareaccounts():
     else:
         return False 
 
-directory = os.getcwd()
-visualdirectory = '~'
+class shell:
+    global setdirectory
+    global getdirectory
 
-def setdirectory(dir):
-    directory = dir
+    def setdirectory(dir):
+        global directory
+        directory = dir
+    
+    def getdirectory():
+        return directory
+    
+    def __init__(username, password, start: bool):
+        global directory
 
-def getdirectory(username):
-    dir = directory
-    return dir
+        #directory = str(f'{str(os.getcwd())}/users/{username}/home')
+        setdirectory(str(f'{str(os.getcwd())}/users/{username}/home'))
+        if start:
+            print()
+            while thereareaccounts():
+                osdic = getdirectory().split('/home')
+                osdir = osdic[len(osdic) - 1]
+                subprocess.call(['pyclean', './', '-q'])
+                if getdirectory() == f'{str(os.getcwd())}/users/{username}/home':
+                    raw = str(input(f'{color.GREEN}{username}@{hostname}{color.TEXT}:{color.BLUE}~{color.TEXT}$ '))
+                else:
+                    raw = str(input(f'{color.GREEN}{username}@{hostname}{color.TEXT}:{color.BLUE}~{osdir}{color.TEXT}$ '))
+                cmdhandler.handle(raw, directory, username, password)
+    
 
-def shell(username, password):
-    print()
-    directory = str(f'{str(os.getcwd())}/users/{username}/home/')
-    while thereareaccounts():
-        subprocess.call(['pyclean', './', '-q'])
-        raw = str(input(f'{color.GREEN}{username}@{hostname}{color.TEXT}:{color.BLUE}~{color.TEXT}$ '))
-        cmdhandler.handle(raw, directory, username, password)
 
 # Can be used for CONTROL + C keyboard interupts in future programs
 
